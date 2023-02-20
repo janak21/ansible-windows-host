@@ -1,0 +1,21 @@
+- hosts: win
+  gather_facts: yes
+  tasks:
+
+  - name: Copy somefile to the Desktop directory
+    win_copy:
+      src: C:\Users\IEUser\Downloads\somefile.msu
+      dest: 'C:\Users\IEUser\Desktop\'
+      remote_src: yes
+      
+- hosts: aws_win
+  gather_facts: yes
+  tasks:
+  
+  - name: Delete files from managed node
+    win_file:
+      path: "{{ item }}"
+      state: absent
+    with_items:
+      - C:\Users\Administrator\Desktop\Upgrade-powershell.ps1 - Copy.txt
+      - C:\Users\Administrator\Desktop\Upgrade-powershell.ps1.txt 

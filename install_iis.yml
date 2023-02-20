@@ -1,0 +1,26 @@
+---
+- name: Install IIS on windows server. In this case on the AWS windows instance.
+- hosts: aws_win
+  gather_facts: yes
+  tasks:
+    - name: Disable Windows Updates Service
+      win_service:
+        name: wuauserv
+        state: stopped
+        
+    - name: Install IIS on managed node
+      win_feature:
+        name: "Web-Server"
+        state: present
+        restart: yes
+        include_sub_features: yes
+        include_management_tools: yes
+        
+    - name: Copy index.html and main.css  
+      win_copy:
+        src: "{{ item }}"
+        dest: "C:\\inetpub\\wwwroot\\"
+      loop:
+        - files/index.html
+        - files/main.css
+      
