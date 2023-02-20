@@ -8,7 +8,8 @@ To run the playbook simply run the following command.</br>
 `ansible-playbook playbook.yml`
 
 </br>
-If you want to run the iis_install.yml playbook on on aws_win group then run the follwoing command.</br>
+If you want to run the iis_install.yml playbook on on aws_win group then run the following command.
+</br>
 
 `ansible-playbook --limit aws_win iis_install.yml`
 
